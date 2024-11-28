@@ -86,7 +86,7 @@ REST_FRAMEWORK = {
 CORS_ALLOWS_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',  # Frontend URL
+    'https://ai-image-enhancer-iota.vercel.app',  # Frontend URL
 ]
 
 
