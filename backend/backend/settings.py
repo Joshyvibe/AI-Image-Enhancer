@@ -20,8 +20,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
-SECRET_KEY = os.environ.get("SECRET_KEY_DJANGO")
+SECRET_KEY = 'django-insecure-*)v6lt)+ux@2ut7tu9ep4-u7rd$l#a1=%-+@4=j27qddzta_#g'
+#SECRET_KEY = os.environ.get("SECRET_KEY_DJANGO")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,8 +86,14 @@ REST_FRAMEWORK = {
 CORS_ALLOWS_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    'https://ai-image-enhancer-iota.vercel.app',  # Frontend URL
+    'https://ai-image-enhancer-iota.vercel.app',  # Frontend URL PRD
 ]
+
+#CORS_ALLOWED_ORIGINS = [
+#    'http://localhost:5173',  # Frontend URL DEV
+#]
+
+
 
 
 
@@ -148,3 +154,23 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Cloudinary Configuration development
+#from decouple import config
+
+#CLOUDINARY = {
+#    'cloud_name': config("cloud_name"),
+#    'api_key':config("api_key"),
+#    'api_secret': config("api_secret"),
+#}
+
+# for prd
+CLOUDINARY = {
+    'cloud_name': os.environ.get("cloud_name"),
+    'api_key':os.environ.get("api_key"),
+    'api_secret': os.environ.get("api_secret"),
+}
+
+
+
+

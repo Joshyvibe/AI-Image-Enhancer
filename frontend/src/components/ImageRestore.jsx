@@ -9,9 +9,6 @@ const ImageRestore = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // const BASE_URL = "http://localhost:8000"; // development backend URL
-  const BASE_URL = "https://ai-image-enhancer-nrry.onrender.com"; // production backend URL
-
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -47,27 +44,41 @@ const ImageRestore = () => {
   };
 
   const handleDownloadPNG = () => {
+    if (!restoredImageUrl) return;
+    console.log(restoredImageUrl)
+  
+    // Create an image element to load the image
     const imgElement = document.createElement("img");
-    imgElement.crossOrigin = "Anonymous";
-
-    const fullImageUrl = restoredImageUrl.startsWith('/') ? `${BASE_URL}${restoredImageUrl}` : restoredImageUrl;
-    imgElement.src = fullImageUrl;
-
+    imgElement.crossOrigin = "Anonymous"; // Enable CORS for cross-origin images
+    imgElement.src = restoredImageUrl; // Use the Cloudinary URL directly
+  
     imgElement.onload = () => {
+      // Create a canvas element to draw the image
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
-
+  
+      // Set canvas dimensions to match the image
       canvas.width = imgElement.width;
       canvas.height = imgElement.height;
+  
+      // Draw the image on the canvas
       ctx.drawImage(imgElement, 0, 0);
-
+  
+      // Convert canvas to a PNG data URL
       const dataURL = canvas.toDataURL("image/png");
+  
+      // Create a link element to trigger download
       const a = document.createElement("a");
       a.href = dataURL;
-      a.download = `restored_image_${Date.now()}.png`;
+      a.download = `restored_image_${Date.now()}.png`; // Set download filename
       a.click();
     };
+  
+    imgElement.onerror = () => {
+      console.error("Error loading image for download.");
+    };
   };
+  
 
   return (
     <div className="image-restore-container">
@@ -106,7 +117,7 @@ const ImageRestore = () => {
       {restoredImageUrl && (
         <div className="restored-image-container">
           <h3>Here's the restored</h3>
-          <img src={`${BASE_URL}${restoredImageUrl}`} alt="Restored" className="restored-image" />
+          <img src={restoredImageUrl} alt="Restored" className="restored-image" />
           <button onClick={handleDownloadPNG} className="download-button">
             Download PNG
           </button>
