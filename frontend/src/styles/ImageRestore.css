@@ -1,0 +1,238 @@
+/* Main container */
+.image-restore-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    flex-direction: column;
+    font-family: 'Arial', sans-serif;
+    color: inherit;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+}
+
+/* Title styling */
+.image-restore-container h2 {
+    font-size: 2.5rem; /* Slightly larger for more emphasis */
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center; /* Center the text for better balance */
+    background: linear-gradient(90deg, #095c09, #057380, #6a0dad);
+    background-size: 200%; /* Animate gradient movement */
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    animation: gradientMove 3s infinite ease-in-out, fadeIn 1.5s ease-in-out;
+  }
+  
+  /* Keyframes for gradient animation */
+  @keyframes gradientMove {
+    0% {
+      background-position: 0%;
+    }
+    100% {
+      background-position: 200%;
+    }
+  }
+  
+  /* Keyframes for fade-in effect */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px); /* Slight upward motion */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Back to position */
+    }
+  }
+  
+
+/* Image upload section */
+.upload-section {
+    margin-bottom: 2rem;
+}
+
+.upload-label {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: linear-gradient(45deg, #0d67ac, #0da373);
+    color: white;
+    cursor: pointer;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease, transform 0.2s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.upload-label:hover {
+    background: linear-gradient(45deg, #149490, #0a5f69);
+    transform: translateY(-5px);  /* Hover effect with slight elevation */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+
+input[type="file"] {
+    display: none;
+}
+
+
+/* Enhanced loader */
+.loader {
+    margin-top: 2rem;
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #057380;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1.5s linear infinite, pulse 1.5s ease-in-out infinite;
+  }
+  
+  /* Pulse animation for loader */
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.6; }
+  }
+  
+/* Error message */
+.error-message {
+    color: #f44336;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+/* Restore button */
+
+
+.restore-button,
+.download-button,
+.toggle-theme-button {
+  padding: 1rem 3rem;
+  font-size: 1.5rem;
+  border-radius: 30px;
+  background: linear-gradient(45deg, #0d67ac, #0da373);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease, transform 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  margin: 10px;
+}
+
+.restore-button:hover,
+.download-button:hover {
+  background: linear-gradient(45deg, #149490, #0a5f69);
+  transform: translateY(-5px);  /* Hover effect with slight elevation */
+}
+
+.restore-button:disabled,
+.download-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+/* Image transition */
+
+
+/* Restored image container */
+.restored-image-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.restored-image {
+    max-width: 30%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out forwards;
+}
+  
+
+.restored-image:hover {
+    transform: scale(1.05);
+}
+
+
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+  
+
+/* Animation for fade-in effect */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .image-restore-container {
+        padding: 1rem;
+    }
+
+    .image-restore-container h2 {
+        font-size: 1.5rem; 
+    }
+
+    .upload-label {
+        padding: 0.8rem 1.5rem;
+        font-size: 1.2rem;
+    }
+
+    .restore-button {
+        font-size: 1.2rem;
+        padding: 0.8rem 2rem;
+    }
+
+    .download-button {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .restored-image,
+    .image-preview {
+        max-width: 100% !important;
+    }
+}
+
+
+
+/* Image preview styling */
+.image-preview-container {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .image-preview {
+    max-width: 40%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .image-preview:hover {
+    transform: scale(1.05);
+  }
+
+h3 {
+    color: #057380;
+    font-weight: bold;
+    margin: 8px;
+}
