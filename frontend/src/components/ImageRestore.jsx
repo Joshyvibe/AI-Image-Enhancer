@@ -9,7 +9,8 @@ const ImageRestore = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const BASE_URL = "http://localhost:8000"; // Update to your production backend URL
+  // const BASE_URL = "http://localhost:8000"; // development backend URL
+  const BASE_URL = "https://ai-image-enhancer-nrry.onrender.com"; // production backend URL
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
